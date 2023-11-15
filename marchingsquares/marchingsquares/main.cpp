@@ -24,12 +24,12 @@ void grid(int col, int row, sf::RenderTexture& texture) {
     std::uniform_int_distribution<int> result(0, 1);
 
     //basic grid
-    sf::CircleShape dot(1.f);
-    for (int i = 0; i < col; i++) {
-        for (int j = 0; j < row; j++) {
+    sf::CircleShape dot(2.f);
+    for (int i = 0; i <= col; i++) {
+        for (int j = 0; j <= row; j++) {
             sqgrid[i][j] = result(generator);
-            dot.setPosition(i * buffer_space + buffer_space/2, 
-                            j * buffer_space + buffer_space/2);
+            dot.setPosition(i * buffer_space, 
+                            j * buffer_space);
             if (sqgrid[i][j] == 1) texture.draw(dot);
         }
     }
@@ -42,10 +42,10 @@ void grid(int col, int row, sf::RenderTexture& texture) {
         for (int j = 0; j < row; j++) {
             float x = i * buffer_space;
             float y = j * buffer_space;
-            sf::Vector2f a(x + buffer_space*0.5 + buffer_space / 2, y + buffer_space / 2);
-            sf::Vector2f b(x + buffer_space + buffer_space / 2, y + buffer_space*0.5 + buffer_space / 2);
-            sf::Vector2f c(x + buffer_space*0.5 + buffer_space / 2, y + buffer_space + buffer_space / 2);
-            sf::Vector2f d(x + buffer_space / 2, y + buffer_space*0.5 + buffer_space / 2);
+            sf::Vector2f a(x + buffer_space*0.5, y);
+            sf::Vector2f b(x + buffer_space, y + buffer_space*0.5);
+            sf::Vector2f c(x + buffer_space*0.5, y + buffer_space);
+            sf::Vector2f d(x, y + buffer_space*0.5);
 
             int slucaj = get_representation(sqgrid[i][j], sqgrid[i + 1][j],
                                             sqgrid[i + 1][j + 1], sqgrid[i][j + 1]);
